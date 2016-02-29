@@ -15,16 +15,18 @@ def permutace(seznam = ['A','B','C','D','E']):
     return output
 
 
-def variace_bezopakovani(seznam = ['A','B','C','D','E'],k=3):
-    if len(seznam)==1:
-        return [seznam]
+def variace_bezopakovani(seznam = ['A','B','C','D','E'],k=5):
+    if len(seznam)==0 or k == 0:
+        return [['']]
 
 
     output=[]
+    k-=1
     for p in seznam:
         new_seznam = seznam.copy()
         new_seznam.remove(p)
         print(new_seznam)
+        # if
         for x in variace_bezopakovani(new_seznam,k):
             # print(type(x))
             output.append([p]+x)
@@ -32,15 +34,12 @@ def variace_bezopakovani(seznam = ['A','B','C','D','E'],k=3):
     return output
 
 def kombinace(seznam = ['A','B','C','D','E'],k=3):
-
-
     output=[]
 
 
 
-# print(variace_bezopakovani())
 
-# l1 = permutace()
-print(variace_bezopakovani())
+ll = variace_bezopakovani()
+print(ll)
+print(len(ll))
 
-# print(len(l1),len(l2))
