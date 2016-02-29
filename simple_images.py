@@ -64,9 +64,8 @@ class svgDrawing:
     def __del__(self):
         self.file.write('</svg>\n')
 
-    def add_triangle(self,x1=0,y1=0,x2=50,y2=50,x3=50,y3=0):
-        list=[x1,y1,x2,y2,x3,y3,x1,y1]
-        self.add_polyline(list)
+    def add_rectangle(self,x1=0,y1=0,width=150,height=150,color="black"):
+        self.file.write('<rect x="'+str(x1)+'" y="'+str(y1)+'" width="150" height="150" style="fill:blue;stroke:pink;stroke-width:'+ self.default_width+'" />')
 
 
 def weird_picture():
