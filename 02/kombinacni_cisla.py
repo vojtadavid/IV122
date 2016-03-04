@@ -35,19 +35,20 @@ def variace_bezopakovani(seznam = ['A','B','C','D','E'],k=5):
 
 def kombinace(seznam = ['A','B','C','D','E'],k=3):
     if len(seznam)==0 or k == 0:
-        return [['']]
+        return [[]]
 
 
     output=[]
-    print(seznam)
-    for p in seznam:
-        tmp1 = seznam.copy()
-        tmp1.remove(p)
-        l=k
-        l-=1
-        for x in kombinace(tmp1,l):
-            output.append([p]+x)
+    l=k
+    l-=1
+    p = seznam[0]
+    tmp1 = seznam.copy()
+    tmp1.remove(p)
 
+    for x in kombinace(tmp1,l):
+        output.append([p]+x)
+
+    if len(seznam) > k:
         tmp2 = seznam.copy()
         tmp2.remove(p)
         for x in kombinace(tmp2,k):
@@ -55,10 +56,15 @@ def kombinace(seznam = ['A','B','C','D','E'],k=3):
 
     return output
 
+def kombinace_sopakovanim(seznam = ['A','B'],k=2):
+    for i in range(k-1):
+        seznam.append("|")
+
+    kombinace(seznam,)
 
 
 
-ll = kombinace()
+ll = kombinace_sopakovanim()
 print(ll)
 print(len(ll))
 

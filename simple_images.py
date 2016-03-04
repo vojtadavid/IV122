@@ -65,7 +65,7 @@ class svgDrawing:
         self.file.write('</svg>\n')
 
     def add_rectangle(self,x1=0,y1=0,width=150,height=150,color="black"):
-        self.file.write('<rect x="'+str(x1)+'" y="'+str(y1)+'" width="150" height="150" style="fill:blue;stroke:pink;stroke-width:'+ self.default_width+'" />')
+        self.file.write('<rect x="'+str(x1)+'" y="'+str(y1)+'" width="'+ str(width) +'" height="'+str(height)+'" style="fill:'+color+';stroke:'+ color +';stroke-width:'+ str(self.default_width) +'" />')
 
 
 def weird_picture():
@@ -96,7 +96,7 @@ def weird_picture():
 
     img.group_end()
 
-weird_picture()
+# weird_picture()
 
 
 class bmpDrawing:
