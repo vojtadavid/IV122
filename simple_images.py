@@ -1,5 +1,6 @@
 from PIL import Image
 import random
+import math
 
 colors_SVG=[ "aliceblue" , "aqua" , "aquamarine" , "azure" , "beige" ,
 "bisque" , "black" , "blanchedalmond" , "blue" , "blueviolet" , "brown" ,
@@ -36,7 +37,7 @@ class svgDrawing:
         self.file = open(filename,"w")
         self.file.write('<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n')
         self.file.write('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\n')
-        self.file.write('<svg xmlns="http://www.w3.org/2000/svg" version="1.1" >\n')
+        self.file.write('<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1000" height="1000">\n')
 
 
     def add_line(self,x1=0,y1=0,x2=120,y2=120,color=default_color,width=default_width):
@@ -65,7 +66,7 @@ class svgDrawing:
         self.file.write('</svg>\n')
 
     def add_rectangle(self,x1=0,y1=0,width=150,height=150,color="black"):
-        self.file.write('<rect x="'+str(x1)+'" y="'+str(y1)+'" width="150" height="150" style="fill:blue;stroke:pink;stroke-width:'+ self.default_width+'" />')
+        self.file.write('<rect x="'+str(x1)+'" y="'+str(y1)+'" width="'+ str(width) +'" height="'+str(height)+'" style="fill:'+color+';stroke:'+ color +';stroke-width:'+ str(self.default_width) +'" />')
 
 
 def weird_picture():
@@ -96,7 +97,7 @@ def weird_picture():
 
     img.group_end()
 
-weird_picture()
+# weird_picture()
 
 
 class bmpDrawing:
@@ -129,6 +130,46 @@ class bmpDrawing:
 
     def save(self):
         self.img.save(self.filename)
+
+    def put_big_dot(self, px, py):
+        self.img.putpixel((px, py), (0, 0, 0))
+        self.img.putpixel((px + 1, py), (0, 0, 0))
+        self.img.putpixel((px - 1, py), (0, 0, 0))
+        self.img.putpixel((px, py + 1), (0, 0, 0))
+        self.img.putpixel((px, py - 1), (0, 0, 0))
+        self.img.putpixel((px + 1, py + 1), (0, 0, 0))
+        self.img.putpixel((px - 1, py - 1), (0, 0, 0))
+        self.img.putpixel((px - 1, py + 1), (0, 0, 0))
+        self.img.putpixel((px + 1, py - 1), (0, 0, 0))
+
+    def draw_line(self, x0, y0, x1, y1):
+        print(x0, y0, x1, y1)
+        dx = math.fabs(x1 - x0)
+        dy = math.fabs(y1 - y0)
+        x = x0
+        y = y0
+        sx = -1 if x0 > x1 else 1
+        sy = -1 if y0 > y1 else 1
+
+        if dx > dy:
+            err = dx / 2.0
+            while x != x1:
+                self.img.putpixel((x, y), (0, 0, 0))
+                err -= dy
+                if err < 0:
+                    y += sy
+                    err += dx
+                x += sx
+        else:
+            err = dy / 2.0
+            while y != y1:
+                self.img.putpixel((x, y), (0, 0, 0))
+                err -= dx
+                if err < 0:
+                    x += sx
+                    err += dy
+                y += sy
+        self.img.putpixel((x, y), (0, 0, 0))
 
     # def __del__(self):
         # self.img.save(self.filename)
