@@ -143,7 +143,7 @@ class bmpDrawing:
         self.img.putpixel((px + 1, py - 1), (0, 0, 0))
 
     def draw_line(self, x0, y0, x1, y1):
-        print(x0, y0, x1, y1)
+        # print(x0, y0, x1, y1)
         dx = math.fabs(x1 - x0)
         dy = math.fabs(y1 - y0)
         x = x0

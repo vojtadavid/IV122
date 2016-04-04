@@ -5,30 +5,26 @@ import math
 
 
 def kruznice(polomer=50,epsilon=0.1):
-    size_x=200
-    size_y=200
-    bmp = simple_images.bmpDrawing("circle.png",size_x,size_y)
+    SIZE =200
+    bmp = simple_images.bmpDrawing("circle.png",SIZE)
 
-    for i in range(size_x):
-        for j in range(size_y):
-            # print(i-10,j-10)
-            x = i-size_x//2
-            y = j-size_y//2
+    for i in range(SIZE):
+        for j in range(SIZE):
+            x = i-SIZE//2
+            y = j-SIZE//2
 
             if (x**2 + y**2)<polomer**2 and (x**2 + y**2)>(polomer*(1-epsilon))**2 :
-                bmp.putpixel(i,j,0,0,0)
-            else:
-                bmp.putpixel(i,j,255,255,255)
+                bmp.putpixel(i,j,0,0,255)
 
     bmp.show()
+    bmp.save()
 
 # kruznice()
 
 
 def kruznice_parametricky(polomer=90):
-    size_x=200
-    size_y=200
-    bmp = simple_images.bmpDrawing("circle_parametricky.png",size_x,size_y)
+    SIZE =200
+    bmp = simple_images.bmpDrawing("circle.png",SIZE)
 
     # for i in range(size_x):
     #     for j in range(size_y):
@@ -40,45 +36,45 @@ def kruznice_parametricky(polomer=90):
         x = int(polomer*math.cos(alfa_rad))
         y = int(polomer*math.sin(alfa_rad))
 
-        print(x+size_x//2,y+size_x//2)
-        bmp.putpixel(x+size_x//2,y+size_y//2,0,0,0)
+        print(x+SIZE//2,y+SIZE//2)
+        bmp.putpixel(x+SIZE//2,y+SIZE//2,0,0,0)
 
 
     bmp.show()
-
-        # print(x,y)
 
 
 # kruznice_parametricky()
 
 
 def spiral():
-    size_x=200
-    size_y=200
+    size_x=400
+    size_y=400
     bmp = simple_images.bmpDrawing("circle_parametricky.png",size_x,size_y)
 
-    polomer=33
-    for alfa in range(360*5):
-        alfa_rad = math.radians(alfa%360)
-        print(alfa_rad)
+    pocet_otacek = 5
 
-        polomer = math.pow(alfa,1/2)
+    #alfa_rad je jiz v radianech
+    alfa_rad = 0.0
+    while (alfa_rad<2*math.pi*pocet_otacek):
+        alfa_rad = alfa_rad + 0.0001
 
+        #Archimedean spiral
+        #a will turn the spiral, while b controls the distance between successive turnings
+        a= 1
+        b= 0.1
+        polomer = a + b*math.degrees(alfa_rad)
         x = int(polomer*math.cos(alfa_rad)) + size_x//2
         y = int(polomer*math.sin(alfa_rad)) + size_y//2
 
-
-
-
-
-        print(x,y)
         bmp.putpixel(x,y,0,0,0)
 
     bmp.show()
-# spiral()
+    bmp.save()
 
 
-def traingle( strana = 500):
+
+
+def triangle( strana = 500):
     size = 1000
     bmp = simple_images.bmpDrawing("triangle.png",size,size)
 
@@ -92,17 +88,14 @@ def traingle( strana = 500):
             x = i-(size//2)
             y = j-(size//2)
 
-            # if y>=0 and y<=x+200 and y<=-x+200 :
-            if y>=0 and y<=a*x+b and y<=-a*x+b:
-                # print(i,j)
-                # print(x,y)
-                bmp.putpixel(i,j,0,0,0)
+            if y>=0 and y<=-a*x+b and y<=+a*x+b:
+                bmp.putpixel(size-i,size-j,0,0,0)
 
 
 
     bmp.show()
 
-# traingle()
+triangle()
 
 def polygon(seznam=[(10, 10), (180, 20), (160, 150), (100, 50), (20, 180)]):
     size=300
@@ -118,15 +111,11 @@ def polygon(seznam=[(10, 10), (180, 20), (160, 150), (100, 50), (20, 180)]):
         y2=seznam[j][1]
         # print(x1,y1,x2,y2)
 
+        img.draw_line(x1,y1,x2,y2)
+
         a = int((y2-y1)/(x2-x1))
         b = int(y1-a*x1)
-        print(a,b)
-        # y= ax+b
 
-        for l in range(size):
-            for m in range(size):
-                if math.fabs(m-(a*l+b))<2 :
-                    img.putpixel(l,m,0,0,0)
 
 
 
