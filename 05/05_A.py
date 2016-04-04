@@ -110,5 +110,6 @@ def najdi_pruseciky():
 
 
     img.show()
+    img.save()
 
 najdi_pruseciky()
