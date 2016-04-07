@@ -108,6 +108,25 @@ class bmpDrawing:
     size_x= 0
     size_y= 0
 
+    color_pointer = 0
+
+    # ccolors = [(0,0,0),(255,255),(255,0,0),(0,255,0),(0,0,255),(255,255,0),(0,255,255),(255,0,255),(192,192,192),(128,128,128),(128,0,0),(128,128,0),(0,128,0),(128,0,128),(0,128,128),(0,0,128)]
+    colors = [("Black", (0, 0, 0)),
+              ("Red", (255, 0, 0)),
+              ("Lime", (0, 255, 0)),
+              ("Blue", (0, 0, 255)),
+              ("Yellow", (255, 255, 0)),
+              ("CyanAqua", (0, 255, 255)),
+              ("Magenta", (255, 0, 255)),
+              ("Silver", (192, 192, 192)),
+              ("Gray", (128, 128, 128)),
+              ("Maroon", (128, 0, 0)),
+              ("Olive", (128, 128, 0)),
+              ("Green", (0, 128, 0)),
+              ("Purple", (128, 0, 128)),
+              ("Teal", (0, 128, 128)),
+              ("Navy", (0, 0, 128)),
+              ]
     img = None
 
     def __init__(self,filename="easters.png",x=255,y=255):
@@ -117,12 +136,15 @@ class bmpDrawing:
         self.img = Image.new("RGB", (x, y), (255,255,255))
 
     def putpixel(self,i, j, r, g, b):
-        self.img.putpixel((i,j),(r,g,b))
+        self.img.putpixel((i,self.size_y - j),(r,g,b))
+
+    def putpixel_2(self, i, j, color):
+        self.img.putpixel((i, self.size_y - j), color)
 
     def testImage(self):
         for i in range(self.size_x):    # for every pixel:
             for j in range(self.size_y):
-                self.img.putpixel((i,j),(i,j,50))
+                self.putpixel(i,j,i,j,50)
         self.img.show()
 
     def show(self):
@@ -132,15 +154,36 @@ class bmpDrawing:
         self.img.save(self.filename)
 
     def put_big_dot(self, px, py):
-        self.img.putpixel((px, py), (0, 0, 0))
-        self.img.putpixel((px + 1, py), (0, 0, 0))
-        self.img.putpixel((px - 1, py), (0, 0, 0))
-        self.img.putpixel((px, py + 1), (0, 0, 0))
-        self.img.putpixel((px, py - 1), (0, 0, 0))
-        self.img.putpixel((px + 1, py + 1), (0, 0, 0))
-        self.img.putpixel((px - 1, py - 1), (0, 0, 0))
-        self.img.putpixel((px - 1, py + 1), (0, 0, 0))
-        self.img.putpixel((px + 1, py - 1), (0, 0, 0))
+        self.putpixel(px, py, 0, 0, 0)
+        self.putpixel(px + 1, py, 0, 0, 0)
+        self.putpixel(px - 1, py, 0, 0, 0)
+        self.putpixel(px, py + 1, 0, 0, 0)
+        self.putpixel(px, py - 1, 0, 0, 0)
+        self.putpixel(px + 1, py + 1, 0, 0, 0)
+        self.putpixel(px - 1, py - 1, 0, 0, 0)
+        self.putpixel(px - 1, py + 1, 0, 0, 0)
+        self.putpixel(px + 1, py - 1, 0, 0, 0)
+
+    def put_big_dot_color(self,px,py):
+
+        print("DOT",px,py,self.colors[self.color_pointer%len(self.colors)][0])
+
+        for d in [(1,0),(0,1),(1,1),(-1,-1),(1,-1),(-1,1),(-1,0),(0,-1),(0,0), (2,0),(0,2),(-2,0),(0,-2)]:
+            x= px + d[0]
+            y= py + d[1]
+            self.putpixel_2(x,y,self.colors[self.color_pointer%len(self.colors)][1])
+
+        self.color_pointer = self.color_pointer + 1
+        # self.putpixel(px, py, 0, 0, 0)
+        # self.putpixel(px + 1, py, 0, 0, 0)
+        # self.putpixel(px - 1, py, 0, 0, 0)
+        # self.putpixel(px, py + 1, 0, 0, 0)
+        # self.putpixel(px, py - 1, 0, 0, 0)
+        # self.putpixel(px + 1, py + 1, 0, 0, 0)
+        # self.putpixel(px - 1, py - 1, 0, 0, 0)
+        # self.putpixel(px - 1, py + 1, 0, 0, 0)
+        # self.putpixel(px + 1, py - 1, 0, 0, 0)
+
 
     def draw_line(self, x0, y0, x1, y1):
         # print(x0, y0, x1, y1)
@@ -154,7 +197,7 @@ class bmpDrawing:
         if dx > dy:
             err = dx / 2.0
             while x != x1:
-                self.img.putpixel((x, y), (0, 0, 0))
+                self.putpixel(x, y, 0, 0, 0)
                 err -= dy
                 if err < 0:
                     y += sy
@@ -163,13 +206,13 @@ class bmpDrawing:
         else:
             err = dy / 2.0
             while y != y1:
-                self.img.putpixel((x, y), (0, 0, 0))
+                self.putpixel(x, y, 0, 0, 0)
                 err -= dx
                 if err < 0:
                     x += sx
                     err += dy
                 y += sy
-        self.img.putpixel((x, y), (0, 0, 0))
+        self.putpixel(x, y, 0, 0, 0)
 
     # def __del__(self):
         # self.img.save(self.filename)

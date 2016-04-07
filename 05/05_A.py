@@ -79,8 +79,8 @@ def najdi_pruseciky():
                 continue
 
             #vypocet souradnice pruseciku dvou primek
-            px = int(((x0*y1-y0*x1)*(x2-x3)-(x0-x1)*(x2*y3-y2*x3))/((x0-x1)*(y2-y3)-(y0-y1)*(x2-x3)))
-            py = int(((x0*y1-y0*x1)*(y2-y3)-(y0-y1)*(x2*y3-y2*x3))/((x0-x1)*(y2-y3)-(y0-y1)*(x2-x3)))
+            px = ((x0*y1-y0*x1)*(x2-x3)-(x0-x1)*(x2*y3-y2*x3))/((x0-x1)*(y2-y3)-(y0-y1)*(x2-x3))
+            py = ((x0*y1-y0*x1)*(y2-y3)-(y0-y1)*(x2*y3-y2*x3))/((x0-x1)*(y2-y3)-(y0-y1)*(x2-x3))
 
 
             #zkontroluj zda nalezeny prusek lezi na useckach
@@ -106,7 +106,7 @@ def najdi_pruseciky():
                 continue
 
             #zvyrazni vypocitany prusecik jako velke tecky
-            img.put_big_dot(px,py)
+            img.put_big_dot(int(px),int(py))
 
 
     img.show()

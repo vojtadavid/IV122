@@ -14,16 +14,18 @@ def prusecik_usecek(p1,p2,p3,p4):
     x3 = p4[0]
     y3 = p4[1]
 
+    # print()
+
     #pokud je primka svisla? x1==x2
     if x0==x1 or x2==x3:
         print("primka je svisla")
 
 
-    if ((x0 - x1) * (y2 - y3) - (y0 - y1) * (x2 - x3)) ==0:
-         return True
+    # if ((x0 - x1) * (y2 - y3) - (y0 - y1) * (x2 - x3)) ==0:
+    #      return True
 
-    px = int(((x0 * y1 - y0 * x1) * (x2 - x3) - (x0 - x1) * (x2 * y3 - y2 * x3)) / ((x0 - x1) * (y2 - y3) - (y0 - y1) * (x2 - x3)))
-    py = int(((x0 * y1 - y0 * x1) * (y2 - y3) - (y0 - y1) * (x2 * y3 - y2 * x3)) / ((x0 - x1) * (y2 - y3) - (y0 - y1) * (x2 - x3)))
+    px = ((x0*y1 - y0 * x1) * (x2 - x3) - (x0 - x1) * (x2 * y3 - y2 * x3)) / ((x0 - x1) * (y2 - y3) - (y0 - y1) * (x2 - x3))
+    py = ((x0*y1 - y0 * x1) * (y2 - y3) - (y0 - y1) * (x2 * y3 - y2 * x3)) / ((x0 - x1) * (y2 - y3) - (y0 - y1) * (x2 - x3))
 
     if x2 <= x3 and not (x2 <= px <= x3):
         return  False
@@ -55,16 +57,28 @@ def triangulace_random():
     SIZE = 600
     img = simple_images.bmpDrawing("triangulace.png", SIZE, SIZE)
 
-    N = 20
+    N = 10
 
     points = []
 
-    #nahodne vygeneruj N bodu a vykresli je do platna
+    # points.append([574, 313])
+    # points.append([30, 314])
+    # points.append([257, 118])
+    # points.append([510, 106])
+    # points.append([270, 484])
+    # points.append([328, 103])
+    # points.append([176, 578])
+    # points.append([280, 98])
+    # points.append([512, 478])
+    # points.append([242, 268])
+
+
+    # nahodne vygeneruj N bodu a vykresli je do platna
     for i in range(N):
         x = int(random.uniform(10,SIZE-10))
         y = int(random.uniform(10,SIZE-10))
 
-        img.put_big_dot(x,y)
+        # img.put_big_dot_color(x,y)
         points.append([x,y])
 
 
@@ -80,6 +94,8 @@ def triangulace_random():
             for p2 in points:
                 if p1==p2:
                     continue
+                if [p1,p2] in pridane_usecky or [p2,p1] in pridane_usecky:
+                    continue
                 #zkontroluj zda je usecka kratsi
                 if distance_points(p1,p2)<nejmensi_vzdalenost:
                     prusecik_existuje = False
@@ -87,9 +103,6 @@ def triangulace_random():
                     for usecka in pridane_usecky:
                         p3 = usecka[0]
                         p4 = usecka[1]
-                        if (p1==p3 and p2==p4) or (p1==p4 and p2==p3):
-                            prusecik_existuje =True
-                            break
                         if prusecik_usecek(p1,p2,p3,p4):
                             prusecik_existuje= True
                             break
@@ -102,7 +115,8 @@ def triangulace_random():
 
 
         #zakresli a pridej nejkratsi usecku
-        if candidate_p2!=None:
+        if nejmensi_vzdalenost!=2*SIZE:
+            print("usecka",candidate_p1[0], candidate_p1[1], candidate_p2[0], candidate_p2[1])
             pridane_usecky.append([candidate_p1, candidate_p2])
             img.draw_line(candidate_p1[0], candidate_p1[1], candidate_p2[0], candidate_p2[1])
 
@@ -110,11 +124,17 @@ def triangulace_random():
 
         break
 
+    for p in points:
+        img.put_big_dot_color(p[0],p[1])
+
+
 
 
     img.show()
     img.save()
 
+
+    # print(prusecik_usecek((30,314),(574,313), (270,484), (242, 268) ))
 
 
 triangulace_random()
