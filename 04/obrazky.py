@@ -71,7 +71,7 @@ def spiral():
     bmp.show()
     bmp.save()
 
-
+spiral()
 
 
 def triangle( strana = 500):

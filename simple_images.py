@@ -125,18 +125,22 @@ class bmpDrawing:
               ("Green", (0, 128, 0)),
               ("Purple", (128, 0, 128)),
               ("Teal", (0, 128, 128)),
-              ("Navy", (0, 0, 128)),
-              ]
+              ("Navy", (0, 0, 128))]
+
     img = None
 
     def __init__(self,filename="easters.png",x=255,y=255):
         self.filename=filename
         self.size_x=x
         self.size_y=y
-        self.img = Image.new("RGB", (x, y), (255,255,255))
+        self.img = Image.new("RGB", (x+1, y+1), (255,255,255))
 
     def putpixel(self,i, j, r, g, b):
+        # print("putpixel",i,j,self.size_y - j)
         self.img.putpixel((i,self.size_y - j),(r,g,b))
+
+    def putpixel_3(self,i, j, r, g, b):
+        self.img.putpixel((i,j),(r,g,b))
 
     def putpixel_2(self, i, j, color):
         self.img.putpixel((i, self.size_y - j), color)

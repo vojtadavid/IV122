@@ -6,19 +6,19 @@ import math
 import random
 
 
-SIZE = 400
+SIZE = 1000
 
 img = simple_images.bmpDrawing("chaos_game_triangle.png",SIZE,SIZE)
 
 
-N =  4
+N =  3
 
 pointsn = [ [math.cos(math.radians(i*(360/N))),math.sin(math.radians(i*(360/N)))] for i in range(N)]
 
 print(pointsn)
 
 
-size = 150
+size = 400
 
 
 points_transform = []
@@ -26,8 +26,31 @@ for point in pointsn:
     x = int(point[0]*size)
     y = int(point[1]*size)
     img.put_big_dot(x+SIZE//2,y+SIZE//2)
-    points_transform.append([x,y])
+    points_transform.append([x+SIZE//2,y+SIZE//2])
 
+print(points_transform)
+
+x = random.randint(0, SIZE-1)
+y = random.randint(0, SIZE-1)
+
+for i in range(10000):
+
+
+
+    # img.put_big_dot_color(int(x),int(y))
+
+    r = random.randint(0,N-1)
+    # print(r)
+    ABC_x = points_transform[r][0]
+    ABC_y = points_transform[r][1]
+
+    # print("connect",x,y,"with",ABC_x,ABC_y,"middle ",int((x+ABC_x)/2),int((y+ABC_y)/2))
+
+    # img.put_big_dot(int((x+ABC_x)/2),int((y+ABC_y)/2))
+    img.putpixel(int((x+ABC_x)/2),int((y+ABC_y)/2),0,0,0)
+
+    x = (x+ABC_x)/2
+    y = (y+ABC_y)/2
 
 
 img.show()
@@ -35,26 +58,3 @@ img.show()
 
 
 
-
-
-
-
-
-
-# size_triangle = 222
-#
-# Ax= 20
-# Ay= 380
-#
-# Bx=Ax + size_triangle
-# By= Ay
-#
-# Cx = int((Bx-Ax)/2)
-# Cy = math.sqrt((size_triangle**2 - (size_triangle/2)**2)
-#
-# img.put_big_dot(Ax,Ay)
-# img.put_big_dot(Bx,By)
-# img.put_big_dot(Cx,Cy)
-#
-#
-# img.show()
