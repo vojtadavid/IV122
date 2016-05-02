@@ -21,25 +21,29 @@ def get_ctverec(strana=20,N=3):
 
 def ukazka(option=1):
     size=1000
-    bmp = simple_images.bmpDrawing("ukazka1.png",size+1,size+1)
+    bmp = simple_images.bmpDrawing("ukazka"+ str(option) + ".png",size+1,size+1)
 
 
 
     # A_list seznam vsech matic jednotlivych transformaci
     A_list = []
     ctverec= None
+    pocet_opakovani = 0
     if option==1:
+        pocet_opakovani = 15
         ctverec = get_ctverec(50, 4)
         A_list.append(rotation(math.radians(20)))
         A_list.append(scaling(1.1,1.1))
         A_list.append(translation(15,20))
 
     if option==2:
+        pocet_opakovani = 15
         ctverec = get_ctverec(333, 4)
         A_list.append(rotation(math.radians(10)))
         A_list.append(scaling(1.1, 0.8))
 
     if option==3:
+        pocet_opakovani = 3
         ctverec = get_ctverec(50, 4)
         A_list.append(shear(1.6))
         A_list.append(rotation(math.radians(33)))
@@ -62,7 +66,7 @@ def ukazka(option=1):
     # print(A)
 
 
-    for i in range(2): #celkovy pocet ctvercu ktere se vykresli - vlezou se do obrazku
+    for i in range(pocet_opakovani): #celkovy pocet ctvercu ktere se vykresli - vlezou se do obrazku
         new_ctverec = []
         #kazdy bod se transformuje nasobenim transformacni matici
         for bod in ctverec:
