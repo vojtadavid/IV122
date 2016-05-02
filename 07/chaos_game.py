@@ -1,25 +1,17 @@
-
-
-
 import simple_images
 import math
 import random
 
 
 SIZE = 1000
-
 img = simple_images.bmpDrawing("chaos_game_triangle.png",SIZE,SIZE)
 
 
 N =  3
-
 pointsn = [ [math.cos(math.radians(i*(360/N))),math.sin(math.radians(i*(360/N)))] for i in range(N)]
-
-print(pointsn)
 
 
 size = 400
-
 
 points_transform = []
 for point in pointsn:
@@ -33,20 +25,14 @@ print(points_transform)
 x = random.randint(0, SIZE-1)
 y = random.randint(0, SIZE-1)
 
-for i in range(10000):
+for i in range(100000):
 
-
-
-    # img.put_big_dot_color(int(x),int(y))
 
     r = random.randint(0,N-1)
     # print(r)
     ABC_x = points_transform[r][0]
     ABC_y = points_transform[r][1]
 
-    # print("connect",x,y,"with",ABC_x,ABC_y,"middle ",int((x+ABC_x)/2),int((y+ABC_y)/2))
-
-    # img.put_big_dot(int((x+ABC_x)/2),int((y+ABC_y)/2))
     img.putpixel(int((x+ABC_x)/2),int((y+ABC_y)/2),0,0,0)
 
     x = (x+ABC_x)/2
