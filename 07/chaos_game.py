@@ -3,7 +3,7 @@ import math
 import random
 
 
-SIZE = 1000
+SIZE = 900
 img = simple_images.bmpDrawing("chaos_game_triangle.png",SIZE,SIZE)
 
 
@@ -25,7 +25,7 @@ print(points_transform)
 x = random.randint(0, SIZE-1)
 y = random.randint(0, SIZE-1)
 
-for i in range(100000):
+for i in range(10000):
 
 
     r = random.randint(0,N-1)
@@ -40,7 +40,7 @@ for i in range(100000):
 
 
 img.show()
-
+img.save()
 
 
 
