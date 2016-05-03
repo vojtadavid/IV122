@@ -21,22 +21,6 @@ print(len(colors))
 # print(colors)
 size = 600
 
-def complex_power(c,n):
-    polar = cmath.polar(c)
-    # print("r",polar[0],"phi",math.degrees(polar[1]))
-    abs_c = (math.sqrt(c.real**2 + c.imag**2))
-    # print(abs_c,math.cos(n*polar[1]),math.sin(n*polar[1]))
-    abs_c = abs_c**n
-    cn = complex(abs_c*math.cos(n*polar[1]),abs_c*math.sin(n*polar[1]))
-    print(cn)
-    return cn
-    # return  complex(polar[0]**n,polar[1]*n)
-
-
-def f(z):
-    return z * z * z - 1.0
-
-
 def newton():
     eps = 0.0001
     iterations=23
