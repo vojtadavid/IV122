@@ -56,15 +56,11 @@ def kombinace(seznam = ['A','B','C','D','E'],k=3):
 
     return output
 
-def kombinace_sopakovanim(seznam = ['A','B'],k=2):
+def kombinace_sopakovanim(seznam = ['A','B','C','D'],k=3):
     for i in range(k-1):
         seznam.append("|")
-
-    kombinace(seznam,)
-
+    return  kombinace(seznam,k)
 
 
-ll = kombinace_sopakovanim()
-print(ll)
-print(len(ll))
+
 
