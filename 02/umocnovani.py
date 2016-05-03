@@ -48,13 +48,6 @@ def odmocnina_newton(x=2,y=2):
         print(x_old,x_new)
 
 
-# print(Fraction(math.pi))
 
-# f = Fraction(math.pi).limit_denominator(100000)
-# print(f.denominator,f.numerator)
-
-# powerof()
-
-# print(odmocnina_bisekce())
 print(odmocnina_newton())
 print(pow(2,1/2))
