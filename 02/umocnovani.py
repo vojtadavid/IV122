@@ -8,6 +8,8 @@ def mocnina(x,y):
         result *=x
     return result
 
+
+#metoda puleni intervalu
 def odmocnina_bisekce(x=2,y=2):
 
 
@@ -35,6 +37,7 @@ def odmocnina_bisekce(x=2,y=2):
 
     return stred
 
+#vypocet pomoci newtonove metody
 def odmocnina_newton(x=2,y=2):
 
     der = y-1

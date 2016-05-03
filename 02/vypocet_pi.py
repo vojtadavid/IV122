@@ -19,7 +19,7 @@ def compute_pi_archimedes():
     b=3
 
     for i in range(33):
-        print(i,a,math.fabs(a-math.pi),b,math.fabs(b-math.pi))
+        # print(i,a,math.fabs(a-math.pi),b,math.fabs(b-math.pi))
         a_next=(2*a*b)/(a+b)
         b_next=pow(a_next*b,1/2)
 
@@ -42,11 +42,10 @@ def compute_pi_BPP():
     p = 0.0
     for n in range(15):
         p+=pow(1/16,n)*( 4/(8*n+1) - 2/(8*n+4) - 1/(8*n+5) - 1/(8*n+6)    )
-        # if n%10==0:
-        print(p,math.fabs(p-math.pi))
+        # print(p,math.fabs(p-math.pi))
+    return p
 
 
-# compute_pi()
 print(compute_pi_BPP())
 print(sys.float_info)
 print(math.pi)
