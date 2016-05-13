@@ -17,8 +17,6 @@ n=32
 y=0
 width=8
 
-
-
 for i in range(1,n+1):
     pocet_clenu_na_radku=i+1
     zacatek=pocet_clenu_na_radku*width/-2

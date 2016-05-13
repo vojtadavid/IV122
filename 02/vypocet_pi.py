@@ -3,6 +3,8 @@ import sys
 import math
 import random
 
+# prehled ruznych metod pro vypocet PI http://mathworld.wolfram.com/PiFormulas.html
+
 def compute_pi_gregory_leibniz():
     p = 0
     for k in range(10000):
@@ -19,7 +21,6 @@ def compute_pi_archimedes():
     b=3
 
     for i in range(33):
-        # print(i,a,math.fabs(a-math.pi),b,math.fabs(b-math.pi))
         a_next=(2*a*b)/(a+b)
         b_next=pow(a_next*b,1/2)
 

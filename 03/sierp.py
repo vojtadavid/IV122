@@ -26,10 +26,7 @@ def sierpinsky_turtle_recursice(alex,x1,y1,distance,n):
 
 
 def sierpinsky_turtle():
-    # alex = MyTurtle("sierpinsky_turtle.svg")
-
-    alex = turtle.Turtle()
-    wn = turtle.Screen()
+    alex = MyTurtle("sierpinsky_turtle.svg")
 
 
 

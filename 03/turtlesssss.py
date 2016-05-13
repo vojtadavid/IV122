@@ -251,6 +251,144 @@ def hilbert(rewrite = ['B'],n=5):
     hilbert(tmp,n-1)
 
 
+# hilbert()
 
 
-hilbert()
+def zanorene_trojuhelniky():
+    N = 3
+    # alex = MyTurtle('pentagram.svg')
+    wn = turtle.Screen()  # Creates a playground for turtles
+    alex = turtle.Turtle()
+    alex.speed(0)
+
+    a = 320  # delka strany
+    while a!=0:
+        a-=20
+        for i in range(N):
+            alex.forward(a)
+            alex.left(360 / N)
+        alex.penup()
+        alex.goto(alex.pos()[0]+math.cos(math.radians(30))*12 ,alex.pos()[1]+math.sin(math.radians(30))*12)
+        alex.pendown()
+
+
+
+    # alex.setheading(0)
+    # alex.left(36)
+    # alex.forward(a / math.cos(math.radians(36)))
+
+    wn.mainloop()
+
+# zanorene_trojuhelniky()
+
+
+def pootocene_ctverce():
+    N = 4
+    # alex = MyTurtle('pentagram.svg')
+    wn = turtle.Screen()  # Creates a playground for turtles
+    alex = turtle.Turtle()
+    alex.speed(0)
+
+    distance = 400
+    for x in range(15):
+        for i in range(N):
+            alex.forward(distance)
+            alex.left(360/N)
+
+        a = 0.9*distance
+        b = distance-a
+        c = math.sqrt(a**2 + b**2)
+
+        angle = math.asin(a/c)
+        print(angle,math.degrees(angle))
+        alex.forward(a)
+        alex.left(math.degrees(angle))
+
+        distance=c
+
+    wn.mainloop()
+
+
+# pootocene_ctverce()
+
+
+def penroose():
+    N = 10
+    # alex = MyTurtle('pentagram.svg')
+    wn = turtle.Screen()  # Creates a playground for turtles
+    alex = turtle.Turtle()
+    # alex.speed(0)
+
+    heading = 0
+    while heading<360:
+        distance = 50
+        for i in range(N):
+            alex.forward(distance)
+            alex.left(360 / N)
+
+        heading+=20
+        alex.setheading(heading)
+    wn.mainloop()
+
+def divnokruh():
+    wn = turtle.Screen()  # Creates a playground for turtles
+    alex = turtle.Turtle()
+    # alex.speed(0)
+    # alex = MyTurtle("divnokruh.svg")
+    polomer = 300
+    posunX = 0
+    posunY = 0
+    d = polomer
+    alex.forward(d * 2)
+    while posunX< polomer:
+
+        posunX  += 5
+
+
+        posunY = math.sqrt(polomer**2 - (polomer-posunX)**2)
+        d = math.sqrt(polomer ** 2 - posunY ** 2)
+
+        alex.penup()
+        alex.goto(posunX,-posunY)
+        alex.pendown()
+        alex.forward(d*2)
+
+        alex.penup()
+        alex.goto(posunX, +posunY)
+        alex.pendown()
+        alex.forward(d*2)
+
+
+        d = math.sqrt(polomer**2-posunY**2)
+
+    alex.goto(polomer,polomer)
+    alex.right(90)
+
+    posunX = 0
+    posunY = 0
+    d = polomer
+    alex.forward(d * 2)
+    while posunY < polomer:
+        posunY += 5
+
+        posunX = math.sqrt(polomer ** 2 - (polomer - posunY) ** 2)
+        d = math.sqrt(polomer ** 2 - posunX ** 2)
+
+        alex.penup()
+        alex.goto(polomer + posunX, polomer - posunY)
+        alex.pendown()
+        alex.forward(d * 2)
+
+        alex.penup()
+        alex.goto(polomer - posunX, polomer - posunY)
+        alex.pendown()
+        alex.forward(d * 2)
+
+
+        d = math.sqrt(polomer ** 2 - posunX ** 2)
+
+
+    wn.mainloop
+divnokruh()
+# penroose()
+

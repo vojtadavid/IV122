@@ -60,11 +60,11 @@ monty_hall(0)
 monty_hall(1)
 monty_hall(2)
 
-experimentalni vyhodnoceni ruznych strategii odpovida predpokladanym vysledkum
-jako nejvyhodnejsi strategie se jevi vzdy zmenit nas puvodni tip
-never change your guess 0.3348
-always change your guess 0.6666
-randomly change your guess 0.499
+# experimentalni vyhodnoceni ruznych strategii odpovida predpokladanym vysledkum
+# jako nejvyhodnejsi strategie se jevi vzdy zmenit nas puvodni tip
+# never change your guess 0.3348
+# always change your guess 0.6666
+# randomly change your guess 0.499
 
 
 

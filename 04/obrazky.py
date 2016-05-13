@@ -71,7 +71,7 @@ def spiral():
     bmp.show()
     bmp.save()
 
-spiral()
+# spiral()
 
 
 def triangle( strana = 500):
@@ -95,7 +95,7 @@ def triangle( strana = 500):
 
     bmp.show()
 
-triangle()
+# triangle()
 
 def polygon(seznam=[(10, 10), (180, 20), (160, 150), (100, 50), (20, 180)]):
     size=300
@@ -116,31 +116,38 @@ def polygon(seznam=[(10, 10), (180, 20), (160, 150), (100, 50), (20, 180)]):
         a = int((y2-y1)/(x2-x1))
         b = int(y1-a*x1)
 
-
-
-
-
     img.show()
+    img.save()
 
 
-polygon()
+# polygon()
 
 def sachovnice_img():
     size=400
-    img = simple_images.bmpDrawing("polygon.png",size,size)
+    img = simple_images.bmpDrawing("sachovnice.png",size,size)
 
     for y in range(size):
             for x in range(size):
-                a=0
-                if (y//40)%2==0:
+                i = x - size // 2
+                j = y - size // 2
+                polomer = math.sqrt(i ** 2 + j ** 2)
+
+                if polomer<150 and polomer>100:
                     a=1
+                    if (y//40)%2==0:
+                        a=0
+                else:
+                    a=0
+                    if (y//40)%2==0:
+                        a=1
                 if (x//40)%2==a :
                     img.putpixel(x,y,0,0,0)
 
 
     img.show()
+    img.save()
 
-# sachovnice_img()
+sachovnice_img()
 
 
 def eclipse(a=80,b=160):
@@ -153,6 +160,8 @@ def eclipse(a=80,b=160):
             x = i-size//2
             y = j-size//2
 
+
+
             alfa = math.radians(60)
             if ((x*math.cos(alfa)+y*math.sin(alfa))/a)**2 + ((x*math.cos(alfa)-y*math.sin(alfa))/b)**2<=1**2:
             # if (x/a)**2 + (y/b)**2<=1**2:
@@ -164,19 +173,23 @@ def eclipse(a=80,b=160):
 
 def kruznice():
     size = 400
-    img = simple_images.bmpDrawing("ellipse.png",size,size)
+    img = simple_images.bmpDrawing("kruznice.png",size,size)
 
-    center = size/2
+    center = size//2
     for i in range(size):
         for j in range(size):
+            x = i-center
+            y = j-center
             distance = math.sqrt((math.fabs(i-center))**2 + (math.fabs(j-center))**2)
-            # print(distance)
-            color = int(math.fabs(0.5*255*(math.cos(0.1*distance))))
-            color+=100
-            # color = math.fabs(color)
-            if color>100:
-                # color=0
-                print(color)
+
+            square_size = 100
+            if -square_size<=x<=square_size and -square_size<=y<=square_size:
+                color = int(math.fabs(0.5 * 255 * (math.cos(0.14 * distance))))
+                color += 50
+            else:
+                color = int(math.fabs(0.5*255*(math.cos(0.1*distance))))
+                color+=50
+
             img.putpixel(i,j,color,color,color)
 
     img.show()
