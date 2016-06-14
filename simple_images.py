@@ -140,6 +140,7 @@ class bmpDrawing:
         self.img.putpixel((i,self.size_y - j),(r,g,b))
 
     def putpixel_3(self,i, j, r, g, b):
+        # print("putpixel", i, j)
         self.img.putpixel((i,j),(r,g,b))
 
     def putpixel_2(self, i, j, color):

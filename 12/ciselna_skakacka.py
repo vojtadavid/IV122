@@ -46,23 +46,7 @@ while len(q)!=0:
 
 
 
-                # while len(q)!=0:
-#     vertex = q.pop()
-#     x=vertex[0]
-#     y=vertex[1]
-#     skok=vertex[2]
-#     print(x,y,skok)
-#
-#     if skok==0:
-#         print("END")
-#         break
-#
-#     for a in [[0,1],[1,0],[-1,0],[0,-1]]:
-#         tmp_x = x + skok*a[0]
-#         tmp_y = y + skok * a[1]
-#         if 0 <= tmp_x < size_X and 0<= tmp_y < size_Y:
-#             print("I can jump to: ",tmp_x,tmp_y,mrizka[tmp_x][tmp_y])
-#             q.insert(0,(tmp_x,tmp_y,mrizka[tmp_x][tmp_y]))
+
 
 
 

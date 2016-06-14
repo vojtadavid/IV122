@@ -3,7 +3,7 @@ import csv
 for i in range(1,8):
     filename = ('random'+str(i)+".txt")
     data = None
-    with open(filename, newline='') as csvfile:
+    with open(filename,newline='') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
         for row in spamreader:
             data = row

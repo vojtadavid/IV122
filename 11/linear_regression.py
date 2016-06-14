@@ -95,5 +95,6 @@ def random_data_generator_linear():
     plt.plot([d[0] for d in random_data], [d[1] for d in random_data],'.')
     plt.show()
 
-random_data_generator_linear()
+# random_data_generator_linear()
 
+linreg()

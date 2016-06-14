@@ -1,27 +1,13 @@
 import random
 import svgwrite
+import math
 N=10
 maze = [[[True,True,True,True] for j in range(N)] for i in range(N)]
 visited = []
 def maze_print(maze):
     dwg = svgwrite.Drawing('test.svg', profile='full')
-    wall = 40
-    # for i in range(N):
-    #     for j in range(N):
-    #         # print(maze[i][j],end="")\
-    #         if i!=N-1 and maze[i][j][2] and maze[i+1][j][0]:
-    #             print("_",end="")
-    #             dwg.add(dwg.add(dwg.line(( j*maze_wall_size, (i+1)*maze_wall_size), ((j+1)*maze_wall_size,(i+1)*maze_wall_size), stroke=svgwrite.rgb(0, 0, 0, '%'))))
-    #         else:
-    #             print(" ",end="")
-    #         if j!=N-1 and maze[i][j][1] and maze[i][j+1][3]:
-    #             print("|",end="")
-    #
-    #             dwg.add(dwg.add(dwg.line(( (i+1)*maze_wall_size,j*maze_wall_size ), ( (i+1)*maze_wall_size, (j+1)*maze_wall_size, ), stroke=svgwrite.rgb(0, 0, 0, '%'))))
-    #         else:
-    #             print(" ",end="")
-    #     print("")
-    # dwg.save()
+    wall = 40 # delka strany
+
 
     dwg.add(dwg.line((0,0),(0,N*wall),stroke=svgwrite.rgb(0, 0, 0, '%')))
     dwg.add(dwg.line((0,0),(N*wall,0),stroke=svgwrite.rgb(0, 0, 0, '%')))
@@ -37,6 +23,8 @@ def maze_print(maze):
                 print("line ", i, i + 1, i * wall)
                 dwg.add(dwg.line( ((j+1)*wall,i*wall)  ,  ((j+1)*wall,(i+1)*wall) ,stroke=svgwrite.rgb(0, 0, 0, '%')))
     print("dwg save")
+
+
     dwg.save()
 
 
