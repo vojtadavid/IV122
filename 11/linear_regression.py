@@ -97,4 +97,4 @@ def random_data_generator_linear():
 
 # random_data_generator_linear()
 
-linreg()
+dummy_linreg()

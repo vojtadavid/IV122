@@ -1,7 +1,6 @@
 import random
 import svgwrite
 import math
-import copy
 N=5
 
 N_sloupce = 6
@@ -10,8 +9,6 @@ N_radky = 6*2
 maze = [[[True,True,True,True,True,True] for j in range(N_sloupce)] for i in range(N_radky)]
 
 visited = []
-print(maze)
-
 
 # 0 doprava dolu
 # 1 dolu
@@ -19,7 +16,6 @@ print(maze)
 # 3 doleva nahoru
 # 4 nahoru
 # 5 doprava nahoru
-
 directions_sude = [(1,0),(2,0),(+1,-1),(-1,-1),(-2,0),(-1,0)]
 directions_liche = [(1,1),(2,0),(+1,0),(-1,0),(-2,0),(-1,1)]
 
@@ -32,6 +28,8 @@ def print_maze():
 
     for i in range(N_radky):
         shift_y =(i*y) +50
+
+        # vykresleni hexagonu v sudem sloupci sloupci
         if i%2 == 0:
             for j in range(N_sloupce):
 
@@ -44,20 +42,14 @@ def print_maze():
                     x2 = hex[idx + 1][0] + shift_x
                     y2 = hex[idx + 1][1] + shift_y
 
-                    directions = None
-                    if i % 2 == 0:
-                        directions = directions_sude
-                    else:
-                        directions = directions_liche
-
                     dir = directions_sude[idx % 6]
-                    # print("smer",idx,i,j,dir,(idx+3)%6)
 
+                    #pridani sten uvnitr bludiste
                     if 0 <= i + dir[0] < N_radky and 0 <= j + dir[1] < N_sloupce and (not maze[i][j][idx]) and (not maze[i + dir[0]][j + dir[1]][(idx + 3) % 6]):
                         print((i,j),(i + dir[0],j + dir[1]),idx)
                         dwg.add(dwg.line((x1, y1), (x2, y2), stroke=svgwrite.rgb(0, 0, 0, '%')))
 
-
+                    #pridani okraju bludiste
                     if i == 0 and (idx in [3,4,5]):
                         dwg.add(dwg.line((x1, y1), (x2, y2), stroke=svgwrite.rgb(0, 0, 0, '%')))
 
@@ -70,6 +62,7 @@ def print_maze():
                         dwg.add(dwg.line((x1, y1), (x2, y2), stroke=svgwrite.rgb(0, 0, 0, '%')))
 
 
+        # vykresleni hexagonu v lichem sloupci
         if i % 2 == 1:
             for j in range(N_sloupce):
                 shift_y = (i * y) + 50
@@ -83,19 +76,13 @@ def print_maze():
                     x2 = hex[idx + 1][0] + shift_x
                     y2 = hex[idx + 1][1] + shift_y
 
-                    directions = None
-                    if i % 2 == 0:
-                        directions = directions_sude
-                    else:
-                        directions = directions_liche
-
                     dir = directions_liche[idx % 6]
-                    # print("smer", idx, i, j, dir, (idx + 3) % 6)
 
                     if 0 <= i + dir[0] < N_radky and 0 <= j + dir[1] < N_sloupce and (not maze[i][j][idx]) and (not maze[i + dir[0]][j + dir[1]][(idx + 3) % 6]):
                         print((i,j),(i + dir[0],j + dir[1]),idx)
                         dwg.add(dwg.line((x1, y1), (x2, y2), stroke=svgwrite.rgb(0, 0, 0, '%')))
 
+                    #pridani okraju bludiste
                     if i==1 and idx==4:
                         dwg.add(dwg.line((x1, y1), (x2, y2), stroke=svgwrite.rgb(0, 0, 0, '%')))
 
