@@ -146,11 +146,11 @@ class bmpDrawing:
     def putpixel_2(self, i, j, color):
         self.img.putpixel((i, self.size_y - j), color)
 
-    def testImage(self):
-        for i in range(self.size_x):    # for every pixel:
-            for j in range(self.size_y):
-                self.putpixel(i,j,i,j,50)
-        self.img.show()
+        def testImage(self):
+            for i in range(self.size_x):    # for every pixel:
+                for j in range(self.size_y):
+                    self.putpixel(i,j,i,j,50)
+            self.img.show()
 
     def show(self):
         self.img.show()

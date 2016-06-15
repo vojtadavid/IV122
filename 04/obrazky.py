@@ -19,7 +19,7 @@ def kruznice(polomer=50,epsilon=0.1):
     bmp.show()
     bmp.save()
 
-# kruznice()
+kruznice()
 
 
 def kruznice_parametricky(polomer=90):
@@ -41,9 +41,10 @@ def kruznice_parametricky(polomer=90):
 
 
     bmp.show()
+    bmp.save()
 
 
-# kruznice_parametricky()
+kruznice_parametricky()
 
 
 def spiral():
@@ -71,7 +72,7 @@ def spiral():
     bmp.show()
     bmp.save()
 
-# spiral()
+spiral()
 
 
 def triangle( strana = 500):
@@ -94,8 +95,9 @@ def triangle( strana = 500):
 
 
     bmp.show()
+    bmp.save()
 
-# triangle()
+triangle()
 
 def polygon(seznam=[(10, 10), (180, 20), (160, 150), (100, 50), (20, 180)]):
     size=300
@@ -120,7 +122,7 @@ def polygon(seznam=[(10, 10), (180, 20), (160, 150), (100, 50), (20, 180)]):
     img.save()
 
 
-# polygon()
+polygon()
 
 def sachovnice_img():
     size=400
@@ -168,12 +170,13 @@ def eclipse(a=80,b=160):
                 img.putpixel(i,j,0,0,0)
 
     img.show()
+    img.save()
 
-# eclipse()
+eclipse()
 
 def kruznice():
     size = 400
-    img = simple_images.bmpDrawing("kruznice.png",size,size)
+    img = simple_images.bmpDrawing("kruznice_asi_barevna.png",size,size)
 
     center = size//2
     for i in range(size):
@@ -193,4 +196,4 @@ def kruznice():
             img.putpixel(i,j,color,color,color)
 
     img.show()
-# kruznice()
+kruznice()
