@@ -224,3 +224,6 @@ class bmpDrawing:
 
 
 
+bmp = bmpDrawing()
+bmp.testImage()
+bmp.save()
