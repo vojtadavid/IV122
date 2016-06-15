@@ -15,9 +15,6 @@ with open('linreg.txt', newline='') as csvfile:
         data.append([float(row[0]),float(row[1])])
 
 
-# print([d[1] for d in data])
-print(data)
-# np.
 
 
 def dummy_linreg():
@@ -69,5 +66,7 @@ def linreg_():
     print(a, b)
     plt.plot([d[0] for d in data], [d[1] for d in data], 'ro', [d[0] for d in data], [a * d[0] + b for d in data], 'b')
     plt.show()
+    plt.savefig("linreg.png")
 
 
+linreg_()
