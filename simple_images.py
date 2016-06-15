@@ -224,6 +224,6 @@ class bmpDrawing:
 
 
 
-bmp = bmpDrawing()
-bmp.testImage()
-bmp.save()
+# bmp = bmpDrawing()
+# bmp.testImage()
+# bmp.save()

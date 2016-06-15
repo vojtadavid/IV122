@@ -48,8 +48,6 @@ class MyTurtle:
         self.isPenUp = False
 
 
-# t = MyTurtle()
-# t.forward()
 
 
 def n_uhelnik(N=6):
@@ -70,12 +68,13 @@ def hvezdicka():
         if abs(turtle.pos()[0]) < 1 and abs(turtle.pos()[1]) < 1:
             break
 
+hvezdicka()
 
 def pentagram():
     N=5
-    # alex = MyTurtle('pentagram.svg')
-    wn = turtle.Screen()      # Creates a playground for turtles
-    alex = turtle.Turtle()
+    alex = MyTurtle('pentagram.svg')
+    # wn = turtle.Screen()      # Creates a playground for turtles
+    # alex = turtle.Turtle()
 
     a = 100 # delka strany
 
@@ -83,15 +82,15 @@ def pentagram():
         alex.forward(a)
         alex.left(360/N)
 
-    alex.setheading(0)
-    alex.left(36)
-    alex.forward(a/math.cos(math.radians(36)))
+    # alex.setheading(0)
+    # alex.left(36)
+    # alex.forward(a/math.cos(math.radians(36)))
 
-    wn.mainloop()
+    # wn.mainloop()
 
-# hvezdicka()
-# n_uhelnik()
-# pentagram()
+hvezdicka()
+n_uhelnik()
+pentagram()
 
 
 def sierpinsky(x1=20,y1=990,x2=933,y2=990):
@@ -164,10 +163,10 @@ def sierpinsky_turtle_recursice(alex,x1,y1,distance,n):
 
 
 def sierpinsky_turtle():
-    # alex = MyTurtle("sierpinsky_turtle.svg")
+    alex = MyTurtle("sierpinsky_turtle.svg")
 
-    alex = turtle.Turtle()
-    wn = turtle.Screen()
+    # alex = turtle.Turtle()
+    # wn = turtle.Screen()
 
 
 
@@ -180,11 +179,11 @@ def sierpinsky_turtle():
 
     sierpinsky_turtle_recursice(alex,0,0,distance,3)
 
-    wn.mainloop()
+    # wn.mainloop()
 
 
 
-# sierpinsky_turtle()
+sierpinsky_turtle()
 
 def koch_rec(mister_turtle,distance,n):
 
@@ -206,27 +205,25 @@ def koch_rec(mister_turtle,distance,n):
 
 
 def koch():
-    mister_turtle = turtle.Turtle()
-    wn = turtle.Screen()
-    mister_turtle.speed(0)
+    mister_turtle = MyTurtle('koch.svg')
+    # wn = turtle.Screen()
+    # mister_turtle.speed(0)
     for i in range(3):
         koch_rec(mister_turtle,500,3)
         mister_turtle.right(120)
 
-    wn.mainloop()
+    # wn.mainloop()
 
 
-
-
-# koch()
+koch()
 
 
 def hilbert(rewrite = ['B'],n=5):
     if n==0:
         print(rewrite)
-        mister_turtle = turtle.Turtle()
-        wn = turtle.Screen()
-        mister_turtle.speed(0)
+        mister_turtle = MyTurtle('hilbert.svg')
+        # wn = turtle.Screen()
+        # mister_turtle.speed(0)
         for x in rewrite:
 
             if x =='+':
@@ -237,7 +234,7 @@ def hilbert(rewrite = ['B'],n=5):
                 continue
             if x=='F':
                 mister_turtle.forward(10)
-        wn.mainloop()
+        # wn.mainloop()
         return
     tmp = []
     for x in rewrite:
@@ -251,15 +248,15 @@ def hilbert(rewrite = ['B'],n=5):
     hilbert(tmp,n-1)
 
 
-# hilbert()
+hilbert()
 
 
 def zanorene_trojuhelniky():
     N = 3
-    # alex = MyTurtle('pentagram.svg')
-    wn = turtle.Screen()  # Creates a playground for turtles
-    alex = turtle.Turtle()
-    alex.speed(0)
+    alex = MyTurtle('zanorene_trojuhelniky.svg')
+    # wn = turtle.Screen()  # Creates a playground for turtles
+    # alex = turtle.Turtle()
+    # alex.speed(0)
 
     a = 320  # delka strany
     while a!=0:
@@ -277,17 +274,17 @@ def zanorene_trojuhelniky():
     # alex.left(36)
     # alex.forward(a / math.cos(math.radians(36)))
 
-    wn.mainloop()
+    # wn.mainloop()
 
-# zanorene_trojuhelniky()
+zanorene_trojuhelniky()
 
 
 def pootocene_ctverce():
     N = 4
-    # alex = MyTurtle('pentagram.svg')
-    wn = turtle.Screen()  # Creates a playground for turtles
-    alex = turtle.Turtle()
-    alex.speed(0)
+    alex = MyTurtle('ctverce.svg')
+    # wn = turtle.Screen()  # Creates a playground for turtles
+    # alex = turtle.Turtle()
+    # alex.speed(0)
 
     distance = 400
     for x in range(15):
@@ -306,17 +303,17 @@ def pootocene_ctverce():
 
         distance=c
 
-    wn.mainloop()
+    # wn.mainloop()
 
 
-# pootocene_ctverce()
+pootocene_ctverce()
 
 
 def penroose():
     N = 10
-    # alex = MyTurtle('pentagram.svg')
-    wn = turtle.Screen()  # Creates a playground for turtles
-    alex = turtle.Turtle()
+    alex = MyTurtle('penrose.svg')
+    # wn = turtle.Screen()  # Creates a playground for turtles
+    # alex = turtle.Turtle()
     # alex.speed(0)
 
     heading = 0
@@ -328,13 +325,13 @@ def penroose():
 
         heading+=20
         alex.setheading(heading)
-    wn.mainloop()
+    # wn.mainloop()
 
 def divnokruh():
-    wn = turtle.Screen()  # Creates a playground for turtles
+    # wn = turtle.Screen()  # Creates a playground for turtles
     alex = turtle.Turtle()
-    # alex.speed(0)
-    # alex = MyTurtle("divnokruh.svg")
+    alex.speed(0)
+    alex = MyTurtle("divnokruh.svg")
     polomer = 300
     posunX = 0
     posunY = 0
@@ -388,7 +385,9 @@ def divnokruh():
         d = math.sqrt(polomer ** 2 - posunX ** 2)
 
 
-    wn.mainloop
-divnokruh()
+    # wn.mainloop()
+
+
+# divnokruh()
 # penroose()
 
