@@ -10,10 +10,6 @@ with open('mrizka_4e', newline='') as csvfile:
             r.append([int(x),False,9999,[]])
         mrizka.append(r)
 
-print(mrizka)
-print(len(mrizka[0]))
-print(len(mrizka))
-
 size_X = len(mrizka[0])
 size_Y = len(mrizka)
 
