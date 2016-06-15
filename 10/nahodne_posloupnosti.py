@@ -1,20 +1,8 @@
 import csv
 import math
 
-def monte_carlo_PI(data):
-    in_circle =0
-    for idx in range(0,len(data),4):
-        # print(idx)
-        x=int(data[idx])/6
-        y=int(data[idx+1])/6
-        z=math.sqrt(x**2 + y**2)
-        # print(x,y,z)
-        if z <= 1:
-            in_circle+=1
-    print(in_circle,len(data),in_circle/(len(data)/2),math.fabs(in_circle-math.pi))
 
-
-for i in range(1,2):
+for i in range(1,7):
     filename = ('random'+str(i)+".txt")
     data = None
     with open(filename,newline='') as csvfile:
@@ -36,6 +24,22 @@ for i in range(1,2):
         sum2 +=((O_i - E)**2)/O_i
 
     chi_squared = sum
-    # print(filename,"chi squared",chi_squared,sum2)
+    print(filename,"chi squared",chi_squared)
 
-    monte_carlo_PI(data)
+
+
+
+
+
+# hm tak to asi nefunguje
+def monte_carlo_PI(data):
+    in_circle =0
+    for idx in range(0,len(data),4):
+        # print(idx)
+        x=int(data[idx])/6
+        y=int(data[idx+1])/6
+        z=math.sqrt(x**2 + y**2)
+        # print(x,y,z)
+        if z <= 1:
+            in_circle+=1
+    print(in_circle,len(data),in_circle/(len(data)/2),math.fabs(in_circle-math.pi))

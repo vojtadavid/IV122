@@ -32,24 +32,17 @@ def ukazka(option=1):
     if option==1:
         pocet_opakovani = 15
         ctverec = get_ctverec(50, 4)
-        A_list.append(rotation(math.radians(20)))
-        A_list.append(scaling(1.1,1.1))
-        A_list.append(translation(15,20))
+        A_list = [rotation(math.radians(20)),scaling(1.1,1.1),translation(15,20)]
 
     if option==2:
         pocet_opakovani = 15
         ctverec = get_ctverec(333, 4)
-        A_list.append(rotation(math.radians(10)))
-        A_list.append(scaling(1.1, 0.8))
+        A_list = [rotation(math.radians(10)),scaling(1.1, 0.8)]
 
     if option==3:
         pocet_opakovani = 3
         ctverec = get_ctverec(50, 4)
-        A_list.append(shear(1.6))
-        A_list.append(rotation(math.radians(33)))
-        A_list.append(scaling(0.9,0.9))
-        A_list.append(translation(10,10))
-
+        A_list = [shear(1.6), rotation(math.radians(33)), scaling(0.9,0.9), translation(10,10)]
 
     #vykresleni netrasformovaneho obrazce
     for idx,bod in enumerate(ctverec):

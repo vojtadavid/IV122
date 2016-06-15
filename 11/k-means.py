@@ -49,8 +49,8 @@ def uniform(n):
 
     i = 0
     while (i < n):
-        x = random.random() * 200 - 100
-        y = random.random() * 200 - 100
+        x = random.random() * 400 - 200
+        y = random.random() * 400 - 200
         data[i] = [x, y,0]
         i+=1
 
@@ -59,10 +59,9 @@ def uniform(n):
 def distance(a,b):
     return math.sqrt((a[0]-b[0])**2 + (a[1]-b[1])**2 )
 
-data = uniform(200)
+data = uniform(800)
 
 print(len(data),data)
-
 
 
 K = 4
@@ -74,59 +73,89 @@ K = 4
 # y: yellow
 # k: black
 # w: white
+
 colors = ['b','g','r','c','m','y','k']
 centroids = [ [random.random() * 200 - 100,random.random() * 200 - 100,i] for i in range(K) ]
 print(centroids)
 
 clusters = [[] for i in range(K)]
 
-for idx,d in enumerate(data):
 
-    nejblizsi_centroid = None
-    nejmensi_vzdalenost = 9999
+
+
+
+iter=0
+while True:
     for c in centroids:
-        if distance(d,c)<nejmensi_vzdalenost:
-            nejblizsi_centroid = c
-            nejmensi_vzdalenost = distance(d,c)
-    data[idx][2]=nejblizsi_centroid[2]
-    clusters[nejblizsi_centroid[2]].append(d)
+        plt.plot(c[0], c[1], colors[c[2]] + "h", markersize=15)
+
+    for d in data:
+        plt.plot(d[0], d[1], colors[d[2]] + "o")
+    plt.savefig("kmeans"+ str(iter) + ".png")
+    plt.clf()
+
+    iter += 1
+
+
+    for idx,d in enumerate(data):
+
+        nejblizsi_centroid = None
+        nejmensi_vzdalenost = 9999
+        for c in centroids:
+            if distance(d,c)<nejmensi_vzdalenost:
+                nejblizsi_centroid = c
+                nejmensi_vzdalenost = distance(d,c)
+        data[idx][2]=nejblizsi_centroid[2]
+        clusters[nejblizsi_centroid[2]].append(d)
+
+
+    centroids_zmena = False
+    for idx,c in enumerate(clusters):
+        # print(c)
+        x = sum([x[0] for x in c])/len(c)
+        y = sum([x[1] for x in c]) / len(c)
+
+        if math.fabs(x-centroids[idx][0])>0.5 or math.fabs(y-centroids[idx][1])>0.5:
+            centroids_zmena = True
+
+        centroids[idx][0] = x
+        centroids[idx][1] = y
+
+    if not centroids_zmena:
+        print("quit you should")
+        break
+
+    print(iter)
 
 
 
 
-for c in centroids:
-    plt.plot(c[0],c[1],colors[c[2]]+"s",markersize=10)
 
 
-for idx,c in enumerate(clusters):
-    print(c)
-    centroids[idx][0] = sum([x[0] for x in c])/len(c)
-    centroids[idx][1] = sum([x[1] for x in c]) / len(c)
-
+plt.figure()
 for c in centroids:
     plt.plot(c[0],c[1],colors[c[2]]+"h",markersize=15)
 
-
 for d in data:
     plt.plot(d[0], d[1], colors[d[2]] + "o" )
-plt.show()
-
-
-print("OK")
-for idx,d in enumerate(data):
-
-    nejblizsi_centroid = None
-    nejmensi_vzdalenost = 9999
-    for c in centroids:
-        if distance(d,c)<nejmensi_vzdalenost:
-            nejblizsi_centroid = c
-            nejmensi_vzdalenost = distance(d,c)
-    data[idx][2]=nejblizsi_centroid[2]
-    clusters[nejblizsi_centroid[2]].append(d)
-
-print("OK")
-for d in data:
-    plt.plot(d[0], d[1], colors[d[2]] + "o" )
-for c in centroids:
-    plt.plot(c[0],c[1],colors[c[2]]+"h",markersize=15)
-plt.show()
+plt.savefig("kmeans"+ str(iter) + ".png")
+#
+#
+# print("OK")
+# for idx,d in enumerate(data):
+#
+#     nejblizsi_centroid = None
+#     nejmensi_vzdalenost = 9999
+#     for c in centroids:
+#         if distance(d,c)<nejmensi_vzdalenost:
+#             nejblizsi_centroid = c
+#             nejmensi_vzdalenost = distance(d,c)
+#     data[idx][2]=nejblizsi_centroid[2]
+#     clusters[nejblizsi_centroid[2]].append(d)
+#
+# print("OK")
+# for d in data:
+#     plt.plot(d[0], d[1], colors[d[2]] + "o" )
+# for c in centroids:
+#     plt.plot(c[0],c[1],colors[c[2]]+"h",markersize=15)
+# plt.show()

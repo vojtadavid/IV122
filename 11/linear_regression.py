@@ -46,7 +46,7 @@ def dummy_linreg():
     plt.show()
 
 
-def linreg():
+def linreg_():
     prumer_y = 0
     prumer_x = 0
 
@@ -71,30 +71,3 @@ def linreg():
     plt.show()
 
 
-def random_data_generator_linear():
-    a = random.random()
-    b = random.random()
-    print("linear: ",a,b)
-    # r = np.arange(-4,4,0.01)
-    # print(r)
-    # plt.plot(r,[pow(math.sqrt(2*math.pi)*0.5,-1)*math.exp(-0.5*x**2)  for x in r],'b')
-    # plt.show()
-    random_data = []
-    for i in range(100):
-        x = (random.random()-0.5)*4
-        # print(x)
-        y = a*x + b
-
-        rand_noise = random.random()*4-2
-        y_noise = pow(math.sqrt(2*math.pi)*1,-1)*math.exp(-0.5*y**2)
-        # y_noise = y + random.random()*2-1
-        # print(y,y_noise)
-        random_data.append([x,y])
-
-    # print(random_data)
-    plt.plot([d[0] for d in random_data], [d[1] for d in random_data],'.')
-    plt.show()
-
-# random_data_generator_linear()
-
-dummy_linreg()
