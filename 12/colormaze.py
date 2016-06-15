@@ -1,4 +1,5 @@
 import copy
+import svgwrite
 # zluta 1
 # zelena 2
 # modra 3
@@ -8,6 +9,9 @@ import copy
 # prazdne policko 0
 # start
 # cil
+
+dict = {1:"yellow",2:"green",3:"blue",4:"red",5:"purple",6:"brown",0:"white","end":"gold","start":"white"}
+
 
 size_X = 4
 size_Y = 4
@@ -20,6 +24,24 @@ maze = [[1,2,0,"end"],[0,1,2,2],[2,3,3,3],["start",2,3,1]]
 
 
 print(maze)
+
+
+def print_path(path):
+    print(path)
+    wall=50
+    for l in range(1, len(path)+1):
+        dwg = svgwrite.Drawing('color_maze_solution' + str(l)+ '.svg', profile='full')
+        dwg.add(dwg.line((0, 0), (0, size_X * wall), stroke=svgwrite.rgb(0, 0, 0, '%')))
+        dwg.add(dwg.line((0, 0), (size_X * wall, 0), stroke=svgwrite.rgb(0, 0, 0, '%')))
+        dwg.add(dwg.line((size_X * wall, size_X * wall), (size_X * wall, 0), stroke=svgwrite.rgb(0, 0, 0, '%')))
+        dwg.add(dwg.line((size_X * wall, size_X * wall), (0, size_X * wall), stroke=svgwrite.rgb(0, 0, 0, '%')))
+        for x in range(l):
+            i=path[x][0]
+            j=path[x][1]
+            dwg.add(dwg.rect((j * 50, i * 50), (50, 50), fill=dict[maze[i][j]]))
+
+        dwg.add(dwg.text("start",(10,(size_X-1)*50+25)))
+        dwg.save()
 
 
 def DFS(v,path):
@@ -35,7 +57,8 @@ def DFS(v,path):
                 continue
             pole[maze[v[0]][v[1]]]+=1
 
-        if len(set(pole[1:]))==1:
+        if len(set(pole[1:]))==1: #zkontroluj zda je kazda barva navstivena stejnekrat
+            print_path(path)
             print("END",len(set(pole[1:])),path,pole[1:])
 
     for a in [[0, 1], [1, 0], [-1, 0], [0, -1]]:
